@@ -69,7 +69,10 @@ def _build_split(families, per_family: int, seed: int) -> Dataset:
 async def _get_verdict(completion, answer, state):
     if "nv_verdict" in state:
         return state["nv_verdict"]
-    response_text = completion[-1]["content"]
+    response_text = ""
+    if completion:
+        last = completion[-1]
+        response_text = last.get("content") or "" if isinstance(last, dict) else str(last)
     artifact = extract_artifact(response_text)
     if artifact is None:
         verdict = _ExtractFailure("no_lean_fence")
