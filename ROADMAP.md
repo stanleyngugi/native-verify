@@ -3,7 +3,7 @@
 Experiment sequence from standalone verifier to RL environment. Phases are
 gated: do not start a phase before the previous phase's exit criteria hold.
 
-## Phase 0 - Hardened harness (current)
+## Phase 0 - Hardened harness (complete)
 
 - Sanitizer with fail-closed allowlist semantics.
 - Fixed template with env-held train + holdout arrays and two `native_decide`
@@ -12,34 +12,35 @@ gated: do not start a phase before the previous phase's exit criteria hold.
 - Positive demo (honest artifact accepted) and attack demo (eight rejection
   classes).
 
-Exit criteria: tests green; every attack demo rejected at sanitize or holdout
-stage; honest artifact accepted end-to-end.
+Exit criteria met: 43 tests green; all attack demos rejected at sanitize or
+holdout stage; honest artifacts accepted end-to-end.
 
-## Phase 1 - Task generator + batch eval
+## Phase 1 - Task generator + batch eval (complete)
 
-- Procedural numeric task families with programmatic ground truth
-  (arithmetic identities, recurrences, combinatorial counts, modular
-  properties). Each family emits: prompt with train cases, env-held holdout
-  cases, difficulty label.
-- Batch CLI: run any OpenAI-compatible chat model against N tasks, extract the
-  final artifact from the response, verify, log per-task verdicts.
+- Five procedural families with programmatic ground truth: linear,
+  explicit_polynomial, closed_form_sum, geometric_mod, digit_sum.
+- Batch CLI (`scripts/batch_eval.py`) against any OpenAI-compatible endpoint
+  with per-stage verdict logging and 429 backoff.
+- Unicode canonicalization layer; entry contract relaxed to type-level.
+- Reference-artifact self-tests prove every family solvable end-to-end.
 
-Exit criteria: contamination-free tasks generated at will; one model evaluated
-end-to-end with acceptance-rate report split by stage
-(sanitize/compile/train/holdout).
+Exit criteria met: baseline measured (gpt-oss-20b via Groq, 90% acceptance on
+10 tasks); acceptance report split by stage and family.
 
-## Phase 2 - verifiers wheel
+## Phase 2 - verifiers wheel (in progress, core complete)
 
-- Package as a Prime Intellect `verifiers` environment: dataset = generated
-  tasks, rubric = weighted components:
-  - `lean_pass` (binary, authoritative outcome),
-  - `holdout_gate` (must pass for any nonzero reward),
-  - stage-reached shaping (only when group is degenerate),
-  - intra-group agreement rate (GRPO group = free consensus set).
-- Sandboxed per-rollout Lean invocation contract documented.
+- `environments/native_verify_seq/`: single-file env module exposing
+  `load_environment()`; dataset = generated tasks with env-held holdouts in
+  the answer field; rubric = binary `lean_pass` reward plus `stage_rank` and
+  `verify_seconds` metrics; verdict cached in rollout state; Lean check
+  offloaded via `asyncio.to_thread` per verifiers performance rules.
+- Packaging per Environments Hub contract: hatchling build, git-URL dependency
+  on this repo, eval defaults in pyproject.
+- Integration smoke passed against installed verifiers 0.3.0 (dataset rows,
+  honest/hack/no-fence scoring through real rubric funcs).
 
-Exit criteria: environment installable via wheel; runs under `vf` eval path;
-rubric components logged independently.
+Remaining for Phase 2: `prime env push` to the Hub (needs Prime CLI auth) and
+a `vf-eval` run against a live inference endpoint (deferred to RunPod setup).
 
 ## Phase 3 - GRPO training run
 

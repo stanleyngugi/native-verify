@@ -1,7 +1,6 @@
 import argparse
 import json
 import os
-import re
 import sys
 import time
 import urllib.error
@@ -16,6 +15,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 from native_verify import verify
 from native_verify.canonical import canonicalize_unicode
+from native_verify.extract import extract_artifact
 from native_verify.tasks import FAMILIES, generate_tasks
 
 SYSTEM_PROMPT = (
@@ -29,30 +29,6 @@ SYSTEM_PROMPT = (
     "Define f either as `def f (n : Nat) : Nat := ...` or as `def f : Nat -> Nat` "
     "with match patterns."
 )
-
-
-def _chat_request(url: str, payload: dict, api_key: str, timeout: float):
-    request = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}",
-            "User-Agent": "native-verify/0.1",
-        },
-        method="POST",
-    )
-    with urllib.request.urlopen(request, timeout=timeout) as response:
-        return json.loads(response.read().decode("utf-8"))
-
-FENCE_RE = re.compile(r"```(?:lean|lean4)?\s*\n(.*?)```", re.DOTALL)
-
-
-def extract_artifact(response_text: str) -> str | None:
-    blocks = FENCE_RE.findall(response_text)
-    if not blocks:
-        return None
-    return blocks[-1].strip()
 
 
 def chat_completion(
