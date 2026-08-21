@@ -64,7 +64,12 @@ def test_missing_entry_point_rejected():
 def test_wrong_signature_rejected():
     result = sanitize_model_code("def f (x : Nat) : Nat := x")
     assert not result.accepted
-    assert any("signature" in error for error in result.errors)
+    assert any("entry point" in error for error in result.errors)
+
+
+def test_typed_pattern_form_accepted():
+    code = "def f : Nat -> Nat\n  | 0 => 0\n  | n + 1 => f n + (n + 1)"
+    assert sanitize_model_code(code).accepted
 
 
 def test_non_ascii_rejected():

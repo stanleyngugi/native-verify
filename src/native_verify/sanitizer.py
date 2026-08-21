@@ -9,7 +9,9 @@ MAX_LINES = 500
 MAX_DEFS = 20
 MAX_LITERAL_DIGITS = 12
 
-BANNED_CHARS = {'"', "'", "`", "@", "\\", "#"}
+BANNED_CHARS = {'"', "`", "@", "\\", "#"}
+
+CHAR_LITERAL_RE = re.compile(r"'(\\.|[^'\\\n])'")
 
 BANNED_WORDS = (
     "admit",
@@ -60,7 +62,8 @@ BANNED_WORDS = (
 )
 
 RESERVED_NAMES = {"f", "trainExpected", "holdoutExpected"}
-ENTRY_SIGNATURE_RE = re.compile(r"^def\s+f\s*\(\s*n\s*:\s*Nat\s*\)\s*:\s*Nat\s*:=")
+ENTRY_SIG_EXPLICIT_RE = re.compile(r"^def\s+f\s*\(\s*n\s*:\s*Nat\s*\)\s*:\s*Nat\s*:=")
+ENTRY_SIG_TYPED_RE = re.compile(r"^def\s+f\s*:\s*Nat\s*->\s*Nat\s*$")
 DEF_NAME_RE = re.compile(r"^def\s+([A-Za-z][A-Za-z0-9_]*)")
 HELPER_NAME_RE = re.compile(r"^[a-z][A-Za-z0-9_]*$")
 LITERAL_RE = re.compile(r"\d+")
@@ -83,6 +86,8 @@ def sanitize_model_code(model_code: str) -> SanitizeResult:
     for ch in BANNED_CHARS:
         if ch in model_code:
             errors.append(f"banned character {ch!r} in model_code")
+    if CHAR_LITERAL_RE.search(model_code):
+        errors.append("char literals are not allowed")
 
     for word in BANNED_WORDS:
         pattern = re.compile(r"\b" + re.escape(word) + r"\b")
@@ -108,9 +113,13 @@ def sanitize_model_code(model_code: str) -> SanitizeResult:
         names.append(name)
         if name == "f":
             entry_found = True
-            if ENTRY_SIGNATURE_RE.match(_collapse(header)) is None:
+            collapsed = _collapse(header)
+            if not (
+                ENTRY_SIG_EXPLICIT_RE.match(collapsed) or ENTRY_SIG_TYPED_RE.match(collapsed)
+            ):
                 errors.append(
-                    "entry point must have exact signature `def f (n : Nat) : Nat :=`"
+                    "entry point must be `def f (n : Nat) : Nat :=` "
+                    "or `def f : Nat -> Nat` with match patterns"
                 )
             continue
         if not HELPER_NAME_RE.match(name):
@@ -165,7 +174,14 @@ def strip_comments(source: str) -> str:
 
 
 def _def_headers(lines: list[str]) -> list[str]:
-    headers: list[str] = [line for line in lines if line.strip() and not line[0].isspace()]
+    headers: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if line[0].isspace() or stripped.startswith("|"):
+            continue
+        headers.append(line)
     return headers
 
 
