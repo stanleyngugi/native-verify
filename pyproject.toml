@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "native-verify"
+version = "0.0.1"
+description = "Execution-as-verification harness for RL training of LLMs"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]
