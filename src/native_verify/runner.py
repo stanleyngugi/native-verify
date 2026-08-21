@@ -4,6 +4,7 @@ import os
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 import time
 from dataclasses import dataclass
@@ -35,34 +36,42 @@ def locate_lean(explicit: str | None = None) -> LeanBackend | None:
     if env:
         candidates.append(_explicit_backend(env))
 
-    candidates.append(
-        LeanBackend(
-            mode="wsl_native",
-            executable=f"{WSL_NATIVE_HOME_PREFIX}/lean-4.23.0-linux/bin/lean",
+    if _is_windows():
+        candidates.append(
+            LeanBackend(
+                mode="wsl_native",
+                executable=f"{WSL_NATIVE_HOME_PREFIX}/lean-4.23.0-linux/bin/lean",
+            )
         )
-    )
 
-    own_root = Path(__file__).resolve().parents[2]
-    folder_root = Path(__file__).resolve().parents[3]
+        own_root = Path(__file__).resolve().parents[2]
+        folder_root = Path(__file__).resolve().parents[3]
 
-    for base in (folder_root / "aimo", own_root):
-        linux_lean = (
-            base / "local" / "runtime" / "tools" / "pinned" / "lean-4.23.0-linux" / "bin" / "lean"
+        for base in (folder_root / "aimo", own_root):
+            linux_lean = (
+                base
+                / "local"
+                / "runtime"
+                / "tools"
+                / "pinned"
+                / "lean-4.23.0-linux"
+                / "bin"
+                / "lean"
+            )
+            if linux_lean.is_file():
+                candidates.append(LeanBackend(mode="wsl", executable=str(linux_lean)))
+        windows_lean = (
+            own_root
+            / "local"
+            / "runtime"
+            / "tools"
+            / "pinned"
+            / "lean-4.23.0-windows"
+            / "bin"
+            / "lean.exe"
         )
-        if linux_lean.is_file():
-            candidates.append(LeanBackend(mode="wsl", executable=str(linux_lean)))
-    windows_lean = (
-        own_root
-        / "local"
-        / "runtime"
-        / "tools"
-        / "pinned"
-        / "lean-4.23.0-windows"
-        / "bin"
-        / "lean.exe"
-    )
-    if windows_lean.is_file():
-        candidates.append(LeanBackend(mode="direct", executable=str(windows_lean)))
+        if windows_lean.is_file():
+            candidates.append(LeanBackend(mode="direct", executable=str(windows_lean)))
 
     discovered = shutil.which("lean") or shutil.which("lean.exe")
     if discovered:
@@ -79,8 +88,12 @@ def locate_lean(explicit: str | None = None) -> LeanBackend | None:
     return None
 
 
+def _is_windows() -> bool:
+    return sys.platform == "win32"
+
+
 def _explicit_backend(path: str) -> LeanBackend:
-    if path.startswith("/"):
+    if _is_windows() and path.startswith("/"):
         return LeanBackend(mode="wsl", executable=path)
     if path.startswith("~") or path.startswith("$"):
         return LeanBackend(mode="wsl_native", executable=path)
