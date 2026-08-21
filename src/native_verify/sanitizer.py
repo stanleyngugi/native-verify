@@ -62,7 +62,7 @@ BANNED_WORDS = (
 )
 
 RESERVED_NAMES = {"f", "trainExpected", "holdoutExpected"}
-ENTRY_SIG_EXPLICIT_RE = re.compile(r"^def\s+f\s*\(\s*n\s*:\s*Nat\s*\)\s*:\s*Nat\s*:=")
+ENTRY_SIG_EXPLICIT_RE = re.compile(r"^def\s+f\s*\(\s*n\s*:\s*Nat\s*\)\s*(?::\s*Nat\s*)?:=")
 ENTRY_SIG_TYPED_RE = re.compile(r"^def\s+f\s*:\s*Nat\s*->\s*Nat\s*$")
 DEF_NAME_RE = re.compile(r"^def\s+([A-Za-z][A-Za-z0-9_]*)")
 HELPER_NAME_RE = re.compile(r"^[a-z][A-Za-z0-9_]*$")
@@ -118,7 +118,7 @@ def sanitize_model_code(model_code: str) -> SanitizeResult:
                 ENTRY_SIG_EXPLICIT_RE.match(collapsed) or ENTRY_SIG_TYPED_RE.match(collapsed)
             ):
                 errors.append(
-                    "entry point must be `def f (n : Nat) : Nat :=` "
+                    "entry point must be `def f (n : Nat) :=` (return type optional) "
                     "or `def f : Nat -> Nat` with match patterns"
                 )
             continue

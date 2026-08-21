@@ -72,6 +72,11 @@ def test_typed_pattern_form_accepted():
     assert sanitize_model_code(code).accepted
 
 
+def test_inferred_return_type_accepted():
+    code = "def f (n : Nat) := n * 2 + 1"
+    assert sanitize_model_code(code).accepted
+
+
 def test_non_ascii_rejected():
     code = "def f (n : Nat) : Nat := id n \u2192 n"
     assert not sanitize_model_code(code).accepted
