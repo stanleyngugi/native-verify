@@ -39,8 +39,25 @@ Exit criteria met: baseline measured (gpt-oss-20b via Groq, 90% acceptance on
 - Integration smoke passed against installed verifiers 0.3.0 (dataset rows,
   honest/hack/no-fence scoring through real rubric funcs).
 
-Remaining for Phase 2: `prime env push` to the Hub (needs Prime CLI auth) and
-a `vf-eval` run against a live inference endpoint (deferred to RunPod setup).
+Remaining for Phase 2: `prime env push` to the Hub (needs Prime CLI auth).
+
+## Phase 3 - GRPO training run (in progress, launch-blocked on GPU credits)
+
+Validated end-to-end on a RunPod A40 before credits ran out:
+
+- vLLM serving Qwen2.5-1.5B-Instruct locally; baseline measured at 2.5%
+  acceptance (1/40 rollouts) - near-zero but nonzero reward, ideal GRPO start.
+- prime-rl installed (uv sync, all five submodules, flash-attn build pending).
+- verifiers v1 Taskset written and validated via dry-run:
+  `NativeVerifyTaskset` + `NativeVerifyTasksetConfig` exported from the env
+  module; binary `nv_lean_pass` reward + zero-weight `nv_stage_rank` metric;
+  renderer pinned to "default" for Qwen2.5.
+- Full debug trail captured in `docs/POD_RUNBOOK.md`; relaunch is one scripted
+  sequence.
+
+Remaining: flash-attn build completion, then launch
+`uv run rl @ configs/grpo_smoke_a40.toml` and track reward trend, hack-attempt
+rate, holdout-failure rate over 24 steps.
 
 ## Phase 3 - GRPO training run
 
