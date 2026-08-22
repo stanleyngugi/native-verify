@@ -3,6 +3,7 @@ import json
 
 import verifiers as vf
 from datasets import Dataset
+from pydantic_config import BaseConfig
 
 from native_verify import verify
 from native_verify.canonical import canonicalize_unicode
@@ -131,3 +132,93 @@ def load_environment(
         system_prompt=SYSTEM_PROMPT,
         rubric=rubric,
     )
+
+
+try:
+    from verifiers.v1.configs.task import TaskConfig
+    from verifiers.v1.configs.taskset import TasksetConfig
+    from verifiers.v1.runtimes import Runtime
+    from verifiers.v1.state import State
+    from verifiers.v1.task import Task, TaskData, TaskResources
+    from verifiers.v1.taskset import Taskset
+    from verifiers.v1.trace import Trace
+    from verifiers.v1.utils.decorators import reward
+
+    class NativeVerifyTaskData(TaskData):
+        train_values: list[int]
+        holdout_values: list[int]
+
+    class NativeVerifyTaskConfig(TaskConfig):
+        lean_bin: str | None = None
+        verify_timeout: float = 90.0
+
+    class NativeVerifyTask(Task[NativeVerifyTaskData, State, NativeVerifyTaskConfig]):
+        NEEDS_CONTAINER = False
+
+        async def _run(self, trace: Trace):
+            artifact = extract_artifact(trace.last_reply())
+            if artifact is None:
+                return _ExtractFailure("no_lean_fence")
+            if len(artifact) > 10000:
+                return _ExtractFailure("artifact_too_large")
+            return await asyncio.to_thread(
+                verify,
+                canonicalize_unicode(artifact),
+                self.data.train_values,
+                self.data.holdout_values,
+                lean_bin=self.config.lean_bin,
+                timeout_seconds=self.config.verify_timeout,
+            )
+
+        @reward(weight=1.0)
+        async def nv_lean_pass(self, trace: Trace, runtime: Runtime) -> float:
+            verdict = await self._run(trace)
+            trace.info["nv_stage"] = verdict.stage
+            trace.info["nv_reason"] = verdict.reason
+            return 1.0 if verdict.accepted else 0.0
+
+        @reward(weight=0.0)
+        async def nv_stage_rank(self, trace: Trace, runtime: Runtime) -> float:
+            verdict = await self._run(trace)
+            return float(STAGE_RANK.get(verdict.stage, 0.0))
+
+    class NativeVerifyTasksetConfig(TasksetConfig):
+        families: str = "all"
+        num_per_family: int = 8
+        seed: int = 0
+        task: NativeVerifyTaskConfig = NativeVerifyTaskConfig()
+
+    class NativeVerifyTaskset(Taskset[NativeVerifyTask, NativeVerifyTasksetConfig]):
+        def load(self):
+            family_list = (
+                None
+                if self.config.families == "all"
+                else [f.strip() for f in self.config.families.split(",")]
+            )
+            tasks = generate_tasks(
+                families=family_list,
+                per_family=self.config.num_per_family,
+                seed=self.config.seed,
+            )
+            for index, generated in enumerate(tasks):
+                yield NativeVerifyTask(
+                    NativeVerifyTaskData(
+                        idx=index,
+                        name=generated.task_id,
+                        prompt=generated.prompt,
+                        train_values=generated.train_values,
+                        holdout_values=generated.holdout_values,
+                        resources=TaskResources(cpu=2, memory=2),
+                    ),
+                    self.config.task,
+                )
+
+    __all__ = [
+        "NativeVerifyTask",
+        "NativeVerifyTaskConfig",
+        "NativeVerifyTaskset",
+        "NativeVerifyTasksetConfig",
+        "load_environment",
+    ]
+except ImportError:
+    pass

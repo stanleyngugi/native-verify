@@ -1,0 +1,37 @@
+max_steps = 24
+seq_len = 4096
+
+[model]
+name = "Qwen/Qwen2.5-1.5B-Instruct"
+
+[orchestrator]
+batch_size = 32
+group_size = 8
+
+[orchestrator.train.sampling]
+max_completion_tokens = 700
+
+[[orchestrator.train.source]]
+name = "native-verify-seq"
+
+[orchestrator.train.source.env.taskset]
+id = "native-verify-seq"
+
+[orchestrator.train.source.env.agent.harness]
+id = "null"
+
+[orchestrator.train.source.env.agent.runtime]
+type = "subprocess"
+
+[trainer.optim]
+lr = 2e-6
+
+[env_vars]
+NATIVE_VERIFY_LEAN = "/workspace/lean-4.23.0-linux/bin/lean"
+
+[inference]
+
+[orchestrator.renderer]
+name = "default"
+
+[ckpt]
