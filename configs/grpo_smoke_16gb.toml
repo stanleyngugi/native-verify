@@ -1,0 +1,48 @@
+max_steps = 24
+seq_len = 2048
+
+[model]
+name = "Qwen/Qwen2.5-1.5B-Instruct"
+
+[trainer.model.lora]
+
+[orchestrator]
+batch_size = 16
+group_size = 8
+
+[orchestrator.train.sampling]
+max_completion_tokens = 700
+
+[[orchestrator.train.source]]
+name = "native-verify-seq"
+
+[orchestrator.train.source.env.taskset]
+id = "native-verify-seq"
+num_per_family = 8
+seed = 0
+
+[orchestrator.train.source.env.agent.harness]
+id = "null"
+
+[orchestrator.train.source.env.agent.runtime]
+type = "subprocess"
+
+[trainer.optim]
+lr = 2e-5
+
+[env_vars]
+HF_HUB_OFFLINE = "1"
+NATIVE_VERIFY_LEAN = "/workspace/lean-4.23.0-linux/bin/lean"
+
+[inference]
+router = "None"
+
+[inference.vllm]
+gpu_memory_utilization = 0.35
+max_model_len = 2048
+enforce_eager = true
+
+[orchestrator.renderer]
+name = "default"
+
+[ckpt]

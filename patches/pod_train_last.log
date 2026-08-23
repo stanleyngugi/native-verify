@@ -1,0 +1,11 @@
+[2m22:10:42[0m [1m   INFO[0m [1m[22mTraining from scratch, cleaning any stale rollouts and broadcasts[0m[0m
+[2m22:16:34[0m [1m   INFO[0m [1m[22mPre-downloading model Qwen/Qwen2.5-1.5B-Instruct[0m[0m
+[2m22:16:34[0m [1m   INFO[0m [1m[22mWrote subconfigs to /tmp/runs/nv-smoke/native-verify-seq--qwen2.5-1.5b-instruct--f8bdc53f/configs[0m[0m
+Single-GPU colocated mode: sharing GPU 0 for inference+trainer
+[2m22:16:34[0m [1m   INFO[0m [1m[22mUsing local->physical GPU mapping: {0: 0, 1: 0}[0m[0m
+[2m22:16:34[0m [1m   INFO[0m [1m[22mStarting RL run[0m[0m
+[2m22:16:34[0m [1m   INFO[0m [1m[22mStarting inference on GPU(s) 0[0m[0m
+[2m22:16:34[0m [1m   INFO[0m [1m[22mStarting native-verify-seq server[0m[0m
+[2m22:16:34[0m [1m   INFO[0m [1m[22mStarting orchestrator[0m[0m
+[2m22:16:34[0m [1m   INFO[0m [1m[22mStarting trainer on GPU(s) 0[0m[0m
+[2m22:16:34[0m [32m[1mSUCCESS[0m [32m[1m[22mStartup complete. Showing orchestrator logs...[0m[0m
