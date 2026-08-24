@@ -156,7 +156,7 @@ try:
         NEEDS_CONTAINER = False
 
         async def _run(self, trace: Trace):
-            artifact = extract_artifact(trace.last_reply())
+            artifact = extract_artifact(trace.last_reply)
             if artifact is None:
                 return _ExtractFailure("no_lean_fence")
             if len(artifact) > 10000:
