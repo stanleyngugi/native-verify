@@ -1,0 +1,239 @@
+[2m13:16:53[0m [1m   INFO[0m [1m[22mTraining from scratch, cleaning any stale rollouts and broadcasts[0m[0m
+[2m13:17:09[0m [1m   INFO[0m [1m[22mPre-downloading model Qwen/Qwen2.5-1.5B-Instruct[0m[0m
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 18468.97it/s]
+[2m13:17:09[0m [1m   INFO[0m [1m[22mWrote subconfigs to /tmp/runs/nv-smoke/native-verify-seq--qwen2.5-1.5b-instruct--72c1627c/configs[0m[0m
+Single-GPU colocated mode: sharing GPU 0 for inference+trainer
+[2m13:17:09[0m [1m   INFO[0m [1m[22mUsing local->physical GPU mapping: {0: 0, 1: 0}[0m[0m
+[2m13:17:09[0m [1m   INFO[0m [1m[22mStarting RL run[0m[0m
+[2m13:17:09[0m [1m   INFO[0m [1m[22mStarting inference on GPU(s) 0[0m[0m
+[2m13:17:09[0m [1m   INFO[0m [1m[22mStarting native-verify-seq server[0m[0m
+[2m13:17:09[0m [1m   INFO[0m [1m[22mStarting orchestrator[0m[0m
+[2m13:17:09[0m [1m   INFO[0m [1m[22mColocated: waiting 300s for inference to stabilize[0m[0m
+[2m13:22:09[0m [1m   INFO[0m [1m[22mStarting trainer on GPU(s) 0[0m[0m
+[2m13:22:09[0m [32m[1mSUCCESS[0m [32m[1m[22mStartup complete. Showing orchestrator logs...[0m[0m
+[2m13:17:40[0m [1m   INFO[0m [1m[22mInitializing grpo algorithm for native-verify-seq[0m[0m
+[2m13:17:40[0m [1m   INFO[0m [1m[22mStarting from scratch[0m[0m
+[2m13:17:40[0m [1m   INFO[0m [1m[22mInitializing micro batch sender (type='zmq' host='localhost' port=5555 hwm=10)[0m[0m
+[2m13:17:40[0m [1m   INFO[0m [1m[22mLoading train environments (native-verify-seq)[0m[0m
+[2m13:17:40[0m [1m   INFO[0m [1m[22mEnv native-verify-seq ready in 10ms (num_tasks=40)[0m[0m
+[2m13:17:40[0m [32m[1mSUCCESS[0m [32m[1m[22mTrain environments ready in 10ms[0m[0m
+[2m13:17:40[0m [1m   INFO[0m [1m[22mWaiting for policy inference pool to be ready[0m[0m
+[2m13:17:47[0m [32m[1mSUCCESS[0m [32m[1m[22mPolicy inference pool ready after 7.0s[0m[0m
+[2m13:17:47[0m [1m   INFO[0m [1m[22mInitializing weight broadcast (timeout=1200 broadcast_final=False type='filesystem')[0m[0m
+[2m13:17:47[0m [1m   INFO[0m [1m[22mSyncing inference to the trainer's startup broadcast (v0)[0m[0m
+[2m13:22:49[0m [1m   INFO[0m [1m[22mCollecting inference metrics from server0=http://localhost:8000[0m[0m
+[2m13:22:49[0m [1m   INFO[0m [1m[22mDerived initial max inflight 69 - 141.4K KV cache tokens / 2.0K tokens per episode[0m[0m
+[2m13:22:49[0m [1m   INFO[0m [1m[22mStarting orchestrator loop (max_steps=24)[0m[0m
+[2m13:22:59[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%); 16 inflight episodes (train=16, eval=0)[0m[0m
+[2m13:23:09[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%); 32 inflight episodes (train=32, eval=0)[0m[0m
+[2m13:23:19[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+3 buffered); 48 inflight episodes (train=48, eval=0)[0m[0m
+[2m13:23:29[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+3 buffered); 64 inflight episodes (train=64, eval=0)[0m[0m
+[2m13:23:39[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+3 buffered); 69 inflight episodes (train=69, eval=0)[0m[0m
+[2m13:23:49[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+3 buffered); 69 inflight episodes (train=69, eval=0)[0m[0m
+[2m13:23:59[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+3 buffered); 69 inflight episodes (train=69, eval=0)[0m[0m
+[2m13:24:09[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+3 buffered); 69 inflight episodes (train=69, eval=0)[0m[0m
+[2m13:24:19[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+3 buffered); 69 inflight episodes (train=69, eval=0)[0m[0m
+[2m13:24:29[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+22 buffered); 73 inflight episodes (train=73, eval=0)[0m[0m
+[2m13:24:39[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:24:49[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:24:59[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:25:09[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:25:19[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:25:29[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:25:39[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:25:49[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:25:59[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:26:09[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:26:19[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:26:29[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:26:39[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:26:49[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:26:59[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:27:09[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:27:19[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:27:29[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:27:39[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 74 inflight episodes (train=74, eval=0)[0m[0m
+[2m13:27:44[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 1 |  4m 51s | Reward 0.8750 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 0 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:27:49[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+24 buffered); 82 inflight episodes (train=82, eval=0)[0m[0m
+[2m13:27:51[0m [1m   INFO[0m [1m[22mPausing dispatcher until the trainer publishes policy v1 (currently v0)[0m[0m
+[2m13:27:59[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 2 |   10.3s | Reward 0.6250 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 1 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:28:02[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+11 buffered); 87 inflight episodes (train=87, eval=0)[0m[0m
+[2m13:28:03[0m [1m   INFO[0m [1m[22mHolding batch 3 until the trainer publishes policy v1 (currently v0)[0m[0m
+[2m13:28:12[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+15 buffered); 82 inflight episodes (train=82, eval=0)[0m[0m
+[2m13:28:15[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 3 |   12.2s | Reward 0.6250 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 2 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:28:15[0m [1m   INFO[0m [1m[22mHolding batch 4 until the trainer publishes policy v2 (currently v1)[0m[0m
+[2m13:28:22[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 4 |   12.8s | Reward 0.7500 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 3 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:28:22[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+18 buffered); 82 inflight episodes (train=82, eval=0)[0m[0m
+[2m13:28:22[0m [1m   INFO[0m [1m[22mHolding batch 5 until the trainer publishes policy v3 (currently v2)[0m[0m
+[2m13:28:28[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 5 |    6.9s | Reward 0.6875 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 4 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:28:32[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 82 inflight episodes (train=82, eval=0)[0m[0m
+[2m13:28:35[0m [1m   INFO[0m [1m[22mResuming dispatcher (policy v4)[0m[0m
+[2m13:28:42[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:28:52[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:29:02[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:29:12[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:29:22[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:29:32[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:29:42[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:29:52[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:30:02[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:30:12[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:30:22[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+8 buffered); 88 inflight episodes (train=88, eval=0)[0m[0m
+[2m13:30:35[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 6 |   2m 8s | Reward 0.6875 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 5 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:30:40[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+40 buffered); 102 inflight episodes (train=102, eval=0)[0m[0m
+[2m13:30:42[0m [1m   INFO[0m [1m[22mPausing dispatcher until the trainer publishes policy v6 (currently v5)[0m[0m
+[2m13:30:47[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 7 |   10.5s | Reward 0.6875 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 6 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:30:52[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+32 buffered); 104 inflight episodes (train=104, eval=0)[0m[0m
+[2m13:30:53[0m [1m   INFO[0m [1m[22mHolding batch 8 until the trainer publishes policy v6 (currently v5)[0m[0m
+[2m13:31:02[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+27 buffered); 104 inflight episodes (train=104, eval=0)[0m[0m
+[2m13:31:08[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 8 |   12.0s | Reward 0.6250 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 7 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:31:12[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 100 inflight episodes (train=100, eval=0)[0m[0m
+[2m13:31:16[0m [1m   INFO[0m [1m[22mResuming dispatcher (policy v7)[0m[0m
+[2m13:31:22[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:31:32[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:31:42[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:31:52[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:32:02[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:32:12[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:32:22[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:32:32[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:32:42[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:32:52[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:33:02[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:33:12[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+28 buffered); 105 inflight episodes (train=105, eval=0)[0m[0m
+[2m13:33:17[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 9 |  2m 20s | Reward 0.7500 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 8 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:33:21[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:33:21[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:33:21[0m [33m[1mWARNING[0m [33m[1m[22mNo admitted train payload after 16 finalized units (consecutive zero-output batch equivalents: 1/10)[0m[0m
+[2m13:33:22[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:33:23[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+25 buffered); 120 inflight episodes (train=120, eval=0)[0m[0m
+[2m13:33:25[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:33:25[0m [1m   INFO[0m [1m[22mPausing dispatcher until the trainer publishes policy v9 (currently v8)[0m[0m
+[2m13:33:34[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 10 |   11.1s | Reward 0.1250 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 4 | Error 0.0% | Cancelled 66.7% | Truncation 0.0%[0m[0m
+[2m13:33:43[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+45 buffered); 121 inflight episodes (train=121, eval=0)[0m[0m
+[2m13:33:50[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 11 |   19.6s | Reward 0.1250 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 5 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:33:54[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+48 buffered); 119 inflight episodes (train=119, eval=0)[0m[0m
+[2m13:34:02[0m [1m   INFO[0m [1m[22mResuming dispatcher (policy v10)[0m[0m
+[2m13:34:04[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+48 buffered); 126 inflight episodes (train=126, eval=0)[0m[0m
+[2m13:34:14[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+48 buffered); 126 inflight episodes (train=126, eval=0)[0m[0m
+[2m13:34:24[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+48 buffered); 126 inflight episodes (train=126, eval=0)[0m[0m
+[2m13:34:34[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+48 buffered); 126 inflight episodes (train=126, eval=0)[0m[0m
+[2m13:34:44[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+48 buffered); 126 inflight episodes (train=126, eval=0)[0m[0m
+[2m13:34:54[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+48 buffered); 126 inflight episodes (train=126, eval=0)[0m[0m
+[2m13:35:04[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+48 buffered); 126 inflight episodes (train=126, eval=0)[0m[0m
+[2m13:35:14[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+48 buffered); 126 inflight episodes (train=126, eval=0)[0m[0m
+[2m13:35:24[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+58 buffered); 128 inflight episodes (train=128, eval=0)[0m[0m
+[2m13:35:34[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+60 buffered); 128 inflight episodes (train=128, eval=0)[0m[0m
+[2m13:35:44[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+60 buffered); 128 inflight episodes (train=128, eval=0)[0m[0m
+[2m13:35:54[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+60 buffered); 128 inflight episodes (train=128, eval=0)[0m[0m
+[2m13:36:04[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+60 buffered); 128 inflight episodes (train=128, eval=0)[0m[0m
+[2m13:36:14[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+54 buffered); 129 inflight episodes (train=129, eval=0)[0m[0m
+[2m13:36:24[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+57 buffered); 129 inflight episodes (train=129, eval=0)[0m[0m
+[2m13:36:28[0m [33m[1mWARNING[0m [33m[1m[22mStep 12: empty train batch after 16 finalized episodes (consecutive empty batches: 1/10)[0m[0m
+[2m13:36:34[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+59 buffered); 132 inflight episodes (train=132, eval=0)[0m[0m
+[2m13:36:44[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+60 buffered); 132 inflight episodes (train=132, eval=0)[0m[0m
+[2m13:36:54[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+60 buffered); 132 inflight episodes (train=132, eval=0)[0m[0m
+[2m13:37:04[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+55 buffered); 133 inflight episodes (train=133, eval=0)[0m[0m
+[2m13:37:14[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+55 buffered); 133 inflight episodes (train=133, eval=0)[0m[0m
+[2m13:37:24[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+55 buffered); 133 inflight episodes (train=133, eval=0)[0m[0m
+[2m13:37:35[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 12 |   1m 5s | Reward 0.7500 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 0 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:37:35[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+59 buffered); 136 inflight episodes (train=136, eval=0)[0m[0m
+[2m13:37:45[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+61 buffered); 136 inflight episodes (train=136, eval=0)[0m[0m
+[2m13:37:55[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+61 buffered); 136 inflight episodes (train=136, eval=0)[0m[0m
+[2m13:38:05[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+61 buffered); 136 inflight episodes (train=136, eval=0)[0m[0m
+[2m13:38:15[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+61 buffered); 136 inflight episodes (train=136, eval=0)[0m[0m
+[2m13:38:25[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+60 buffered); 137 inflight episodes (train=137, eval=0)[0m[0m
+[2m13:38:30[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 13 |   54.5s | Reward 0.5000 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 1 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:38:32[0m [1m   INFO[0m [1m[22mPausing dispatcher until the trainer publishes policy v13 (currently v12)[0m[0m
+[2m13:38:37[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 14 |    4.7s | Reward 0.2500 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 8 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:38:40[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+41 buffered); 144 inflight episodes (train=144, eval=0)[0m[0m
+[2m13:38:41[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:38:41[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:38:41[0m [33m[1mWARNING[0m [33m[1m[22mNo admitted train payload after 16 finalized units (consecutive zero-output batch equivalents: 1/10)[0m[0m
+[2m13:38:41[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:38:41[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:38:41[0m [33m[1mWARNING[0m [33m[1m[22mNo admitted train payload after 32 finalized units (consecutive zero-output batch equivalents: 2/10)[0m[0m
+[2m13:38:42[0m [33m[1mWARNING[0m [33m[1m[22mStep 15: empty train batch after 48 finalized episodes (consecutive empty batches: 1/10)[0m[0m
+[2m13:38:42[0m [1m   INFO[0m [1m[22mHolding batch 15 until the trainer publishes policy v13 (currently v12)[0m[0m
+[2m13:38:45[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 15 |   198ms | Reward 0.2500 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 6 | Error 0.0% | Cancelled 50.0% | Truncation 0.0%[0m[0m
+[2m13:38:45[0m [1m   INFO[0m [1m[22mHolding batch 16 until the trainer publishes policy v14 (currently v13)[0m[0m
+[2m13:38:49[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 16 |    3.0s | Reward 0.5000 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 7 | Error 0.0% | Cancelled 0.0% | Truncation 6.2%[0m[0m
+[2m13:38:50[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+57 buffered); 79 inflight episodes (train=79, eval=0)[0m[0m
+[2m13:38:53[0m [1m   INFO[0m [1m[22mResuming dispatcher (policy v15)[0m[0m
+[2m13:39:00[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+57 buffered); 107 inflight episodes (train=107, eval=0)[0m[0m
+[2m13:39:10[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+57 buffered); 135 inflight episodes (train=135, eval=0)[0m[0m
+[2m13:39:20[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+57 buffered); 148 inflight episodes (train=148, eval=0)[0m[0m
+[2m13:39:30[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+57 buffered); 148 inflight episodes (train=148, eval=0)[0m[0m
+[2m13:39:40[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+66 buffered); 150 inflight episodes (train=150, eval=0)[0m[0m
+[2m13:39:50[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+78 buffered); 154 inflight episodes (train=154, eval=0)[0m[0m
+[2m13:40:00[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+81 buffered); 155 inflight episodes (train=155, eval=0)[0m[0m
+[2m13:40:03[0m [33m[1mWARNING[0m [33m[1m[22mStep 17: empty train batch after 16 finalized episodes (consecutive empty batches: 1/10)[0m[0m
+[2m13:40:10[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+74 buffered); 155 inflight episodes (train=155, eval=0)[0m[0m
+[2m13:40:20[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+74 buffered); 155 inflight episodes (train=155, eval=0)[0m[0m
+[2m13:40:30[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+74 buffered); 155 inflight episodes (train=155, eval=0)[0m[0m
+[2m13:40:40[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+75 buffered); 156 inflight episodes (train=156, eval=0)[0m[0m
+[2m13:40:50[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+76 buffered); 156 inflight episodes (train=156, eval=0)[0m[0m
+[2m13:41:00[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+78 buffered); 156 inflight episodes (train=156, eval=0)[0m[0m
+[2m13:41:10[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+78 buffered); 156 inflight episodes (train=156, eval=0)[0m[0m
+[2m13:41:20[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+72 buffered); 157 inflight episodes (train=157, eval=0)[0m[0m
+[2m13:41:29[0m [33m[1mWARNING[0m [33m[1m[22mStep 17: empty train batch after 32 finalized episodes (consecutive empty batches: 2/10)[0m[0m
+[2m13:41:30[0m [33m[1mWARNING[0m [33m[1m[22mStep 17: empty train batch after 48 finalized episodes (consecutive empty batches: 3/10)[0m[0m
+[2m13:41:33[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 17 |    50ms | Reward 0.8750 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 8 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:41:38[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+42 buffered); 167 inflight episodes (train=167, eval=0)[0m[0m
+[2m13:41:39[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:41:39[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:41:39[0m [33m[1mWARNING[0m [33m[1m[22mNo admitted train payload after 16 finalized units (consecutive zero-output batch equivalents: 1/10)[0m[0m
+[2m13:41:40[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:41:48[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+56 buffered); 169 inflight episodes (train=169, eval=0)[0m[0m
+[2m13:41:58[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+60 buffered); 170 inflight episodes (train=170, eval=0)[0m[0m
+[2m13:42:08[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 18 |   36.7s | Reward 0.6250 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 5 | Error 0.0% | Cancelled 60.0% | Truncation 0.0%[0m[0m
+[2m13:42:09[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+53 buffered); 171 inflight episodes (train=171, eval=0)[0m[0m
+[2m13:42:10[0m [33m[1mWARNING[0m [33m[1m[22mStep 19: empty train batch after 16 finalized episodes (consecutive empty batches: 1/10)[0m[0m
+[2m13:42:10[0m [1m   INFO[0m [1m[22mPausing dispatcher until the trainer publishes policy v18 (currently v17)[0m[0m
+[2m13:42:15[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 19 |   108ms | Reward 0.5000 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 3 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:42:24[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+72 buffered); 182 inflight episodes (train=182, eval=0)[0m[0m
+[2m13:42:34[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+74 buffered); 181 inflight episodes (train=181, eval=0)[0m[0m
+[2m13:42:38[0m [1m   INFO[0m [1m[22mResuming dispatcher (policy v18)[0m[0m
+[2m13:42:44[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+75 buffered); 182 inflight episodes (train=182, eval=0)[0m[0m
+[2m13:42:54[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+75 buffered); 182 inflight episodes (train=182, eval=0)[0m[0m
+[2m13:43:04[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+75 buffered); 182 inflight episodes (train=182, eval=0)[0m[0m
+[2m13:43:14[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+75 buffered); 182 inflight episodes (train=182, eval=0)[0m[0m
+[2m13:43:24[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+76 buffered); 182 inflight episodes (train=182, eval=0)[0m[0m
+[2m13:43:33[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 20 |  1m 22s | Reward 0.2500 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 3 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:43:34[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+65 buffered); 185 inflight episodes (train=185, eval=0)[0m[0m
+[2m13:43:44[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+71 buffered); 187 inflight episodes (train=187, eval=0)[0m[0m
+[2m13:43:54[0m [1m   INFO[0m [1m[22mTrain batch 8/16 (50.0%) (+71 buffered); 187 inflight episodes (train=187, eval=0)[0m[0m
+[2m13:43:59[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 21 |   26.2s | Reward 0.4375 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 5 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:44:00[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:44:00[0m [1m   INFO[0m [1m[22mPausing dispatcher until the trainer publishes policy v21 (currently v20)[0m[0m
+[2m13:44:05[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 22 |    1.8s | Reward 0.1250 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 6 | Error 0.0% | Cancelled 33.3% | Truncation 0.0%[0m[0m
+[2m13:44:11[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+47 buffered); 194 inflight episodes (train=194, eval=0)[0m[0m
+[2m13:44:11[0m [33m[1mWARNING[0m [33m[1m[22mDropped 8 queued traces past max_off_policy_steps=8. Consider increasing it to avoid this.[0m[0m
+[2m13:44:11[0m [1m   INFO[0m [1m[22mHolding batch 23 until the trainer publishes policy v21 (currently v20)[0m[0m
+[2m13:44:21[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+29 buffered); 193 inflight episodes (train=193, eval=0)[0m[0m
+[2m13:44:21[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 23 |   11.1s | Reward 0.3125 | Trainable 16/16 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 7 | Error 0.0% | Cancelled 33.3% | Truncation 0.0%[0m[0m
+[2m13:44:21[0m [33m[1mWARNING[0m [33m[1m[22mStep 24: empty train batch after 16 finalized episodes (consecutive empty batches: 1/10)[0m[0m
+[2m13:44:27[0m [1m   INFO[0m [1m[22mResuming dispatcher (policy v22)[0m[0m
+[2m13:44:31[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+33 buffered); 194 inflight episodes (train=194, eval=0)[0m[0m
+[2m13:44:41[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+33 buffered); 194 inflight episodes (train=194, eval=0)[0m[0m
+[2m13:44:51[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+33 buffered); 194 inflight episodes (train=194, eval=0)[0m[0m
+[2m13:45:01[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+33 buffered); 194 inflight episodes (train=194, eval=0)[0m[0m
+[2m13:45:11[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+33 buffered); 194 inflight episodes (train=194, eval=0)[0m[0m
+[2m13:45:21[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+33 buffered); 194 inflight episodes (train=194, eval=0)[0m[0m
+[2m13:45:31[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+33 buffered); 194 inflight episodes (train=194, eval=0)[0m[0m
+[2m13:45:41[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+33 buffered); 194 inflight episodes (train=194, eval=0)[0m[0m
+[2m13:45:51[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+34 buffered); 195 inflight episodes (train=195, eval=0)[0m[0m
+[2m13:46:01[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+34 buffered); 195 inflight episodes (train=195, eval=0)[0m[0m
+[2m13:46:11[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+34 buffered); 195 inflight episodes (train=195, eval=0)[0m[0m
+[2m13:46:21[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+34 buffered); 195 inflight episodes (train=195, eval=0)[0m[0m
+[2m13:46:31[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+34 buffered); 195 inflight episodes (train=195, eval=0)[0m[0m
+[2m13:46:41[0m [1m   INFO[0m [1m[22mTrain batch 0/16 (0.0%) (+34 buffered); 195 inflight episodes (train=195, eval=0)[0m[0m
+[2m13:46:45[0m [32m[1mSUCCESS[0m [32m[1m[22mStep 24 |  2m 21s | Reward 0.1250 | Trainable 8/8 (100.0%) | Turns 1.0 | Branches 1.0 | Max Off-Policy 7 | Error 0.0% | Cancelled 0.0% | Truncation 0.0%[0m[0m
+[2m13:46:45[0m [1m   INFO[0m [1m[22mShipped the final batch — draining pipeline (cancelled 199 in-flight train episode(s); any in-flight evals will complete)[0m[0m
+[2m13:46:47[0m [1m   INFO[0m [1m[22mPipeline drained, exiting main loop[0m[0m
+[2m13:46:47[0m [32m[1mSUCCESS[0m [32m[1m[22mOrchestrator step loop done in 23m 58s[0m[0m
+[2m13:46:47[0m [1m   INFO[0m [1m[22mFinalized metrics at /tmp/runs/nv-smoke/native-verify-seq--qwen2.5-1.5b-instruct--72c1627c/metrics.jsonl[0m[0m
+[2m13:46:47[0m [1m   INFO[0m [1m[22mSaving final checkpoint at step 24[0m[0m
+[2m13:46:47[0m [1m   INFO[0m [1m[22mStopping orchestrator components[0m[0m
+[2m13:46:47[0m [32m[1mSUCCESS[0m [32m[1m[22mOrchestrator finished[0m[0m
+[2m13:47:16[0m [32m[1mSUCCESS[0m [32m[1m[22mTraining finished![0m[0m
